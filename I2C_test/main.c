@@ -4,7 +4,7 @@
 #include "I2C_Driver.h"
 
 unsigned char d = 0;
-unsigned char data[10];
+unsigned char data[5];
 
 void main(void)
 {
@@ -14,7 +14,13 @@ void main(void)
 	d = READ_I2C(0x6F,0x10);
 	WRITE_I2C(0x6F, 0x10, 0xFF);
 	d = READ_I2C(0x6F,0x10);
-	ReadI2CMultipleByte(0x6F,0x10,5,data);
+	data[0] = 1;
+	data[1] = 2;
+	data[2] = 3;
+	data[3] = 4;
+	data[4] = 5;
+	WriteI2CMultipleByte(0x6F,0x00,5,data);
+	ReadI2CMultipleByte(0x6F,0x00,5,data);
 	__no_operation();
 	while(1);
 }

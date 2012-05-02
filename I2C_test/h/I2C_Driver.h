@@ -40,9 +40,6 @@ March,10,2011			PM				1.0				Initial Release
 #define	__I2C_DRIVER_H
 
 
-#define		I2C_SCL_TRIS		TRISC3
-#define		I2C_SDA_TRIS		TRISC4
-
 #define         GetSystemClock()        10000000UL                  //PIC Operating Frequency in Hz
 #define         GetPeripheralClock()    (GetSystemClock() / 4)
 #define         GetInstructionClock()   (GetSystemClock() / 4)
@@ -50,11 +47,9 @@ March,10,2011			PM				1.0				Initial Release
 #define         I2C_SSPADD_VAL          ((GetInstructionClock()/I2C_CLOCK) - 1)
 
 void InitI2C(void);
-//void CHECK_I2C_IDLE(void);
 void WRITE_I2C(unsigned char Slave_Add,unsigned char Add, unsigned char Val);
 unsigned char READ_I2C(unsigned char Slave_Add,unsigned char Add);
-//void WriteI2CMultipleByte(unsigned char Slave_Add,unsigned char Add,unsigned char Cnt_Byte, unsigned char *ptrToData);
+void WriteI2CMultipleByte(unsigned char Slave_Add,unsigned char Add,unsigned char Cnt_Byte, unsigned char *ptrToData);
 void ReadI2CMultipleByte(unsigned char Slave_Add,unsigned char Add,unsigned char Cnt_Byte, unsigned char *ptrToData);
-//bit CHECK_I2C_ACK(unsigned char Slave_Add);
 
 #endif

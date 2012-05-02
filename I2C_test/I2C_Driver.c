@@ -160,29 +160,21 @@ unsigned char READ_I2C(unsigned char Slave_Add,unsigned char Add)
 // *
 // * Overview:        Writes more than a byte to I2C slave device
 // *******************************************************************/
-//void WriteI2CMultipleByte(unsigned char Slave_Add,unsigned char Add,unsigned char Cnt_Byte, unsigned char *ptrToData)
-//{
-//	CHECK_I2C_IDLE();
-//
-//	SEN = 1;									//Initiate Start condition on I2C bus
-//	while(SEN);									//Wait for Start condition to complete
-//	SSPBUF = Slave_Add;
-//	CHECK_I2C_IDLE();
-//	while(ACKSTAT);      						//Check for ACK from I2C slave device
-//
-//	SSPBUF = Add;
-//	CHECK_I2C_IDLE();
-//	while(ACKSTAT);      						//Check for ACK from I2C slave device
-//	do
-//	{
-//		SSPBUF = *(ptrToData++);
-//		CHECK_I2C_IDLE();
-//		while(ACKSTAT);      					//Check for ACK from I2C slave device
-//		Cnt_Byte--;
-//	}while(Cnt_Byte != 0);
-//	PEN = 1;									//Issue stop condition
-//}
-//
+void WriteI2CMultipleByte(unsigned char Slave_Add,unsigned char Add,unsigned char Cnt_Byte, unsigned char *ptrToData)
+{
+	Setup_TX(Slave_Add);
+	RPT_Flag = 0;
+	TxBuffer[0] = Add;
+	memcpy(TxBuffer+1, ptrToData, Cnt_Byte*sizeof(unsigned char));
+	PTxData = TxBuffer; // TX array start address
+	TXByteCtr = Cnt_Byte+1; // Load TX byte counter
+	while (UCB0CTL1 & UCTXSTP); // Ensure stop condition got sent
+	UCB0CTL1 |= UCTR + UCTXSTT; // I2C TX, start condition
+	__bis_SR_register(CPUOFF + GIE);
+	// Enter LPM0 w/ interrupts
+	while (UCB0CTL1 & UCTXSTP);             // Ensure stop condition got sent									//Issue stop condition
+}
+
 ///********************************************************************
 // * Function:        void ReadI2CMultipleByte(unsigned char Slave_Add,unsigned char Add,unsigned char Cnt_Byte, unsigned char *ptrToData)
 // *
@@ -240,11 +232,13 @@ __interrupt void USCIAB0TX_ISR(void)
 		  	 RXByteCtr--;                              // Decrement RX byte counter
 		    if (RXByteCtr) {
 		    	*PRxData++ = UCB0RXBUF;                 // Move RX data to address PRxData
+		    	__no_operation();
 		    }
 		    else
 		    {
 		  		UCB0CTL1 |= UCTXSTP;                // No Repeated Start: stop condition
-		  		*PRxData = UCB0RXBUF;                   // Move final RX data to PRxData
+		  		*PRxData++ = UCB0RXBUF;                   // Move final RX data to PRxData
+		  		__no_operation();
 		  		__bic_SR_register_on_exit(CPUOFF);      // Exit LPM0
 	  }
 

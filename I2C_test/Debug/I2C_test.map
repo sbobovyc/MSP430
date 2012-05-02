@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v4.0.0                      
 ******************************************************************************
->> Linked Tue May 01 20:49:44 2012
+>> Linked Wed May 02 12:43:00 2012
 
 OUTPUT FILE NAME:   <I2C_test.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 000082e2
+ENTRY POINT SYMBOL: "_c_int00"  address: 00008360
 
 
 MEMORY CONFIGURATION
@@ -14,12 +14,12 @@ MEMORY CONFIGURATION
   SFR                   00000000   00000010  00000000  00000010  RWIX
   PERIPHERALS_8BIT      00000010   000000f0  00000000  000000f0  RWIX
   PERIPHERALS_16BIT     00000100   00000100  00000000  00000100  RWIX
-  RAM                   00000200   00000400  000000f2  0000030e  RWIX
+  RAM                   00000200   00000400  000000ee  00000312  RWIX
   INFOD                 00001000   00000040  00000000  00000040  RWIX
   INFOC                 00001040   00000040  00000000  00000040  RWIX
   INFOB                 00001080   00000040  00000000  00000040  RWIX
   INFOA                 000010c0   00000040  00000000  00000040  RWIX
-  FLASH                 00008000   00007fde  0000035c  00007c82  RWIX
+  FLASH                 00008000   00007fde  000003da  00007c04  RWIX
   INT00                 0000ffe0   00000002  00000000  00000002  RWIX
   INT01                 0000ffe2   00000002  00000000  00000002  RWIX
   INT02                 0000ffe4   00000002  00000000  00000002  RWIX
@@ -45,41 +45,42 @@ section   page    origin      length       input sections
 --------  ----  ----------  ----------   ----------------
 .pinit     0    00008000    00000000     UNINITIALIZED
 
-.bss       0    00000200    000000a2     UNINITIALIZED
+.bss       0    00000200    0000009e     UNINITIALIZED
                   00000200    0000008d     I2C_Driver.obj (.bss)
                   0000028d    00000001     --HOLE--
-                  0000028e    0000000c     main.obj (.bss)
-                  0000029a    00000004     rts430.lib : _lock.obj (.bss)
-                  0000029e    00000004                : boot.obj (.bss)
+                  0000028e    00000008     main.obj (.bss)
+                  00000296    00000004     rts430.lib : _lock.obj (.bss)
+                  0000029a    00000004                : boot.obj (.bss)
 
 .stack     0    000005b0    00000050     UNINITIALIZED
                   000005b0    00000002     rts430.lib : boot.obj (.stack)
                   000005b2    0000004e     --HOLE--
 
-.text      0    00008000    00000348     
-                  00008000    00000098     I2C_Driver.obj (.text:USCIAB0TX_ISR)
-                  00008098    0000006e     I2C_Driver.obj (.text:ReadI2CMultipleByte)
-                  00008106    0000006c     I2C_Driver.obj (.text:READ_I2C)
-                  00008172    0000004a     main.obj (.text:main)
-                  000081bc    00000046     rts430.lib : autoinit.obj (.text:_auto_init)
-                  00008202    0000003c     I2C_Driver.obj (.text:Setup_TX)
-                  0000823e    0000003c     I2C_Driver.obj (.text:WRITE_I2C)
-                  0000827a    00000036     I2C_Driver.obj (.text:Setup_RX)
-                  000082b0    00000032     I2C_Driver.obj (.text:InitI2C)
-                  000082e2    00000026     rts430.lib : boot.obj (.text:_c_int00_noexit)
-                  00008308    00000014                : memset.obj (.text:memset)
-                  0000831c    00000012                : memcpy.obj (.text:memcpy)
-                  0000832e    00000010                : epilog.obj (.text)
-                  0000833e    00000004                : pre_init.obj (.text:_system_pre_init)
-                  00008342    00000004                : exit.obj (.text:abort)
-                  00008346    00000002                : _lock.obj (.text:_nop)
+.text      0    00008000    000003c6     
+                  00008000    000000a4     I2C_Driver.obj (.text:USCIAB0TX_ISR)
+                  000080a4    00000072     main.obj (.text:main)
+                  00008116    0000006e     I2C_Driver.obj (.text:ReadI2CMultipleByte)
+                  00008184    0000006c     I2C_Driver.obj (.text:READ_I2C)
+                  000081f0    0000004a     I2C_Driver.obj (.text:WriteI2CMultipleByte)
+                  0000823a    00000046     rts430.lib : autoinit.obj (.text:_auto_init)
+                  00008280    0000003c     I2C_Driver.obj (.text:Setup_TX)
+                  000082bc    0000003c     I2C_Driver.obj (.text:WRITE_I2C)
+                  000082f8    00000036     I2C_Driver.obj (.text:Setup_RX)
+                  0000832e    00000032     I2C_Driver.obj (.text:InitI2C)
+                  00008360    00000026     rts430.lib : boot.obj (.text:_c_int00_noexit)
+                  00008386    00000014                : memset.obj (.text:memset)
+                  0000839a    00000012                : memcpy.obj (.text:memcpy)
+                  000083ac    00000010                : epilog.obj (.text)
+                  000083bc    00000004                : pre_init.obj (.text:_system_pre_init)
+                  000083c0    00000004                : exit.obj (.text:abort)
+                  000083c4    00000002                : _lock.obj (.text:_nop)
 
-.cinit     0    00008348    00000014     
-                  00008348    0000000b     I2C_Driver.obj (.cinit)
-                  00008353    00000001     --HOLE-- [fill = 0]
-                  00008354    00000005     main.obj (.cinit)
-                  00008359    00000001     --HOLE-- [fill = 0]
-                  0000835a    00000002     (.pad.cinit) [fill = 0]
+.cinit     0    000083c6    00000014     
+                  000083c6    0000000b     I2C_Driver.obj (.cinit)
+                  000083d1    00000001     --HOLE-- [fill = 0]
+                  000083d2    00000005     main.obj (.cinit)
+                  000083d7    00000001     --HOLE-- [fill = 0]
+                  000083d8    00000002     (.pad.cinit) [fill = 0]
 
 .int06     0    0000ffec    00000002     
                   0000ffec    00000002     I2C_Driver.obj (.int06)
@@ -105,7 +106,7 @@ address    name
 00000057   BCSCTL1
 00000058   BCSCTL2
 00000053   BCSCTL3
-00008342   C$$EXIT
+000083c0   C$$EXIT
 000010fb   CALBC1_12MHZ
 000010f9   CALBC1_16MHZ
 000010ff   CALBC1_1MHZ
@@ -122,7 +123,7 @@ address    name
 00000001   IE2
 00000002   IFG1
 00000003   IFG2
-000082b0   InitI2C
+0000832e   InitI2C
 000000c0   OA0CTL0
 000000c1   OA0CTL1
 000000c2   OA1CTL0
@@ -155,14 +156,14 @@ address    name
 0000001f   P4SEL
 00000206   PRxData
 00000208   PTxData
-00008106   READ_I2C
+00008184   READ_I2C
 00000202   RPT_Flag
 0000028c   RX
 00000200   RXByteCtr
-00008098   ReadI2CMultipleByte
+00008116   ReadI2CMultipleByte
 0000028a   RxBuffer
-0000827a   Setup_RX
-00008202   Setup_TX
+000082f8   Setup_RX
+00008280   Setup_TX
 00000172   TACCR0
 00000174   TACCR1
 00000176   TACCR2
@@ -207,7 +208,8 @@ address    name
 0000006f   UCB0TXBUF
 00008000   USCIAB0TX_ISR
 00000120   WDTCTL
-0000823e   WRITE_I2C
+000082bc   WRITE_I2C
+000081f0   WriteI2CMultipleByte
 00000600   __STACK_END
 00000050   __STACK_SIZE
 00000001   __TI_args_main
@@ -216,39 +218,39 @@ address    name
 ffffffff   __binit__
 00000200   __bss__
 ffffffff   __c_args__
-00008348   __cinit__
-000002a2   __end__
-00008348   __etext__
+000083c6   __cinit__
+0000029e   __end__
+000083c6   __etext__
 ffffffff   __pinit__
 00008000   __text__
-000081bc   _auto_init
-000082e2   _c_int00
-000082e2   _c_int00_noexit
-0000029e   _cleanup_ptr
-000002a0   _dtors_ptr
-0000029a   _lock
-00008346   _nop
+0000823a   _auto_init
+00008360   _c_int00
+00008360   _c_int00_noexit
+0000029a   _cleanup_ptr
+0000029c   _dtors_ptr
+00000296   _lock
+000083c4   _nop
 0000fffe   _reset_vector
 000005b0   _stack
-0000833e   _system_pre_init
-0000029c   _unlock
-00008342   abort
+000083bc   _system_pre_init
+00000298   _unlock
+000083c0   abort
 ffffffff   binit
-00008348   cinit
+000083c6   cinit
 0000028e   d
 00000290   data
-000002a2   end
-00008348   etext
-0000833a   func_epilog_1
-00008338   func_epilog_2
-00008336   func_epilog_3
-00008334   func_epilog_4
-00008332   func_epilog_5
-00008330   func_epilog_6
-0000832e   func_epilog_7
-00008172   main
-0000831c   memcpy
-00008308   memset
+0000029e   end
+000083c6   etext
+000083b8   func_epilog_1
+000083b6   func_epilog_2
+000083b4   func_epilog_3
+000083b2   func_epilog_4
+000083b0   func_epilog_5
+000083ae   func_epilog_6
+000083ac   func_epilog_7
+000080a4   main
+0000839a   memcpy
+00008386   memset
 ffffffff   pinit
 
 
@@ -362,12 +364,12 @@ address    name
 0000028c   RX
 0000028e   d
 00000290   data
-0000029a   _lock
-0000029c   _unlock
-0000029e   _cleanup_ptr
-000002a0   _dtors_ptr
-000002a2   __end__
-000002a2   end
+00000296   _lock
+00000298   _unlock
+0000029a   _cleanup_ptr
+0000029c   _dtors_ptr
+0000029e   __end__
+0000029e   end
 000005b0   _stack
 00000600   __STACK_END
 000010f8   CALDCO_16MHZ
@@ -381,33 +383,34 @@ address    name
 00008000   .text
 00008000   USCIAB0TX_ISR
 00008000   __text__
-00008098   ReadI2CMultipleByte
-00008106   READ_I2C
-00008172   main
-000081bc   _auto_init
-00008202   Setup_TX
-0000823e   WRITE_I2C
-0000827a   Setup_RX
-000082b0   InitI2C
-000082e2   _c_int00
-000082e2   _c_int00_noexit
-00008308   memset
-0000831c   memcpy
-0000832e   func_epilog_7
-00008330   func_epilog_6
-00008332   func_epilog_5
-00008334   func_epilog_4
-00008336   func_epilog_3
-00008338   func_epilog_2
-0000833a   func_epilog_1
-0000833e   _system_pre_init
-00008342   C$$EXIT
-00008342   abort
-00008346   _nop
-00008348   __cinit__
-00008348   __etext__
-00008348   cinit
-00008348   etext
+000080a4   main
+00008116   ReadI2CMultipleByte
+00008184   READ_I2C
+000081f0   WriteI2CMultipleByte
+0000823a   _auto_init
+00008280   Setup_TX
+000082bc   WRITE_I2C
+000082f8   Setup_RX
+0000832e   InitI2C
+00008360   _c_int00
+00008360   _c_int00_noexit
+00008386   memset
+0000839a   memcpy
+000083ac   func_epilog_7
+000083ae   func_epilog_6
+000083b0   func_epilog_5
+000083b2   func_epilog_4
+000083b4   func_epilog_3
+000083b6   func_epilog_2
+000083b8   func_epilog_1
+000083bc   _system_pre_init
+000083c0   C$$EXIT
+000083c0   abort
+000083c4   _nop
+000083c6   __cinit__
+000083c6   __etext__
+000083c6   cinit
+000083c6   etext
 0000fffe   _reset_vector
 ffffffff   __binit__
 ffffffff   __c_args__
@@ -415,4 +418,4 @@ ffffffff   __pinit__
 ffffffff   binit
 ffffffff   pinit
 
-[158 symbols]
+[159 symbols]

@@ -51,10 +51,10 @@ March,10,2011			PM				1.0				Initial Release
 
 void InitI2C(void);
 //void CHECK_I2C_IDLE(void);
-void WRITE_I2C(unsigned char Slave_Add,unsigned char Add, unsigned char Val);
+//void WRITE_I2C(unsigned char Slave_Add,unsigned char Add, unsigned char Val);
 unsigned char READ_I2C(unsigned char Slave_Add,unsigned char Add);
 //void WriteI2CMultipleByte(unsigned char Slave_Add,unsigned char Add,unsigned char Cnt_Byte, unsigned char *ptrToData);
-//void ReadI2CMultipleByte(unsigned char Slave_Add,unsigned char Add,unsigned char Cnt_Byte, unsigned char *ptrToData);
+void ReadI2CMultipleByte(unsigned char Slave_Add,unsigned char Add,unsigned char Cnt_Byte, unsigned char *ptrToData);
 //bit CHECK_I2C_ACK(unsigned char Slave_Add);
 
 #endif

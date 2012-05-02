@@ -196,5 +196,4 @@
 		<resource resourceType="PROJECT" workspacePath="/I2C_test"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
-	<storageModule moduleId="scannerConfiguration"/>
 </cproject>

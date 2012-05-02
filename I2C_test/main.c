@@ -3,12 +3,17 @@
 #include "msp430x22x4.h"
 #include "I2C_Driver.h"
 
+unsigned char d = 0;
+unsigned char data[10];
 
 void main(void)
 {
 
+
 	InitI2C();
-	READ_I2C(0x6F,0x10);
+	d = READ_I2C(0x6F,0x10);
+	ReadI2CMultipleByte(0x6F,0x10,5,data);
+	__no_operation();
 	while(1);
 }
 

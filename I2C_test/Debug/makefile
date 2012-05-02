@@ -9,6 +9,7 @@ CG_TOOL_ROOT := C:/ti/ccsv5/tools/compiler/msp430
 ORDERED_OBJS += \
 $(GEN_CMDS__FLAG) \
 "./main.obj" \
+"./RTCC_Driver.obj" \
 "./I2C_Driver.obj" \
 -l"libc.a" \
 "../lnk_msp430f2274.cmd" \
@@ -21,7 +22,9 @@ RMDIR := RMDIR /S/Q
 # All of the sources participating in the build are defined here
 -include sources.mk
 -include subdir_vars.mk
+-include h/subdir_vars.mk
 -include subdir_rules.mk
+-include h/subdir_rules.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -123,8 +126,8 @@ I2C_test.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
 # Other Targets
 clean:
 	-$(RM) $(MSP430_EXECUTABLE_OUTPUTS__QUOTED) "I2C_test.out"
-	-$(RM) "I2C_Driver.pp" "main.pp" 
-	-$(RM) "I2C_Driver.obj" "main.obj" 
+	-$(RM) "I2C_Driver.pp" "RTCC_Driver.pp" "main.pp" 
+	-$(RM) "I2C_Driver.obj" "RTCC_Driver.obj" "main.obj" 
 	-@echo 'Finished clean'
 	-@echo ' '
 

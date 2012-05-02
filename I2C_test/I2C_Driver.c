@@ -39,6 +39,7 @@ March,10,2011			PM				1.0				Initial Release
 #include <string.h>
 #include "msp430x22x4.h"
 #include "I2C_Driver.h"
+#include "custom_types.h"
 
 int RXByteCtr, RPT_Flag = 0;                // enables repeated start when 1
 unsigned char TXData;
@@ -127,8 +128,7 @@ unsigned char READ_I2C(unsigned char Slave_Add,unsigned char Add)
 	TXByteCtr = 1; // Load TX byte counter
 	while (UCB0CTL1 & UCTXSTP); // Ensure stop condition got sent
 	UCB0CTL1 |= UCTR + UCTXSTT; // I2C TX, start condition
-	__bis_SR_register(CPUOFF + GIE);
-	// Enter LPM0 w/ interrupts
+	__bis_SR_register(CPUOFF + GIE); // Enter LPM0 w/ interrupts
 	while (UCB0CTL1 & UCTXSTP);             // Ensure stop condition got sent
 
 	RPT_Flag = 0;
@@ -212,6 +212,30 @@ void ReadI2CMultipleByte(unsigned char Slave_Add,unsigned char Add,unsigned char
 	// Enter LPM0 w/ interrupts
 	while (UCB0CTL1 & UCTXSTP);             // Ensure stop condition got sent
 
+}
+
+/********************************************************************
+ * Function:        bit CHECK_I2C_ACK(unsigned char Slave_Add)
+ *
+ * PreCondition:    None
+ *
+ * Input:           I2C slave address
+ *
+ * Output:          None
+ *
+ * Side Effects:    None
+ *
+ * Overview:        Returns 0 if ACK received or 1
+ *******************************************************************/
+bit CHECK_I2C_ACK(unsigned char Slave_Add)
+{
+	Setup_TX(Slave_Add);
+	RPT_Flag = 1;
+	TXByteCtr = 0; // Load TX byte counter
+	while (UCB0CTL1 & UCTXSTP); // Ensure stop condition got sent
+	UCB0CTL1 |= UCTR + UCTXSTT; // I2C TX, start condition
+	__bis_SR_register(CPUOFF + GIE); // Enter LPM0 w/ interrupts
+	return 1;
 }
 
 

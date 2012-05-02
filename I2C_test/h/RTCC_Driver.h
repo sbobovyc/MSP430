@@ -67,14 +67,14 @@ typedef struct{
 typedef struct{
 	
 	union{
-		unsigned char DummyVal;	//This will be used when Alarm is to be read
+		unsigned char DVal;	//This will be used when Alarm is to be read
 		struct{
 			unsigned Day : 3;
 			unsigned ALMIF : 1;
 			unsigned ALMConfig : 3;
 			unsigned ALMPOL : 1;
 		};
-	};
+	}DummyVal;
 	unsigned char Sec;
 	unsigned char Min;
 	unsigned char Hour;
@@ -84,19 +84,19 @@ typedef struct{
 
 typedef struct{
 	union{
-		unsigned char Day_Month;
+		unsigned char DM;
 		struct{
 			unsigned Month : 5;
 			unsigned Day : 3;
 		};
-	};
+	}Day_Month;
 	unsigned char Min;
 	unsigned char Hour;
 	unsigned char Date;
 }RTCCTimeStampVcc;
 
-#define		CNTRL_BYTE_SRAM_RTCC					0b11011110
-#define		CNTRL_BYTE_EEPROM_RTCC					0b10101110
+#define		CNTRL_BYTE_SRAM_RTCC					0x6F
+#define		CNTRL_BYTE_EEPROM_RTCC					0x57
 #define		SRAM_BLOCK_SIZE							64
 #define		SRAM_BLOCK_START_ADD					0x20
 #define		EEPROM_PAGE_SIZE						8

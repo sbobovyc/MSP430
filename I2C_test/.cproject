@@ -106,7 +106,7 @@
 						</tool>
 					</fileInfo>
 					<sourceEntries>
-						<entry excluding="h/RTCC_Driver.h|RTCC_Driver.c|RTCC_PIC16_Main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="RTCC_PIC16_Main.c" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -196,4 +196,5 @@
 		<resource resourceType="PROJECT" workspacePath="/I2C_test"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
+	<storageModule moduleId="scannerConfiguration"/>
 </cproject>

@@ -8,26 +8,32 @@ CMD_SRCS += \
 
 C_SRCS += \
 ../I2C_Driver.c \
+../RTCC_Driver.c \
 ../main.c 
 
 OBJS += \
 ./I2C_Driver.obj \
+./RTCC_Driver.obj \
 ./main.obj 
 
 C_DEPS += \
 ./I2C_Driver.pp \
+./RTCC_Driver.pp \
 ./main.pp 
 
 C_DEPS__QUOTED += \
 "I2C_Driver.pp" \
+"RTCC_Driver.pp" \
 "main.pp" 
 
 OBJS__QUOTED += \
 "I2C_Driver.obj" \
+"RTCC_Driver.obj" \
 "main.obj" 
 
 C_SRCS__QUOTED += \
 "../I2C_Driver.c" \
+"../RTCC_Driver.c" \
 "../main.c" 
 
 

@@ -1,1 +1,1 @@
-"./main.obj" "./I2C_Driver.obj" -l"libc.a" "../lnk_msp430f2274.cmd" 
+"./main.obj" "./RTCC_Driver.obj" "./I2C_Driver.obj" -l"libc.a" "../lnk_msp430f2274.cmd" 

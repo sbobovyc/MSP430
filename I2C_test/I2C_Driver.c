@@ -43,6 +43,8 @@ March,10,2011			PM				1.0				Initial Release
 int RXByteCtr, RPT_Flag = 0;                // enables repeated start when 1
 unsigned char TXData;
 unsigned char * PRxData;
+unsigned char * PTxData;
+unsigned char TxBuffer[128];
 unsigned char RxBuffer;
 unsigned char TXByteCtr, RX = 0;
 
@@ -72,7 +74,7 @@ void InitI2C(void)
 	  P2SEL |= (1 << 1);                        // SMCLK Output
 	  P3DIR = 0x0F;								// disable CC2500 //TODO remember to reenable the radio
 	  P3SEL |= 0x06;                            // Assign I2C pins to USCI_B0
-	  //memset(RxBuffer, 0, 128*sizeof(unsigned char));
+	  memset(TxBuffer, 0, 128*sizeof(unsigned char));
 }
 
 
@@ -89,20 +91,20 @@ void InitI2C(void)
  *
  * Overview:        Writes a byte to I2C slave at specified address
  *******************************************************************/
-//void WRITE_I2C(unsigned char Slave_Add,unsigned char Add, unsigned char Val)
-//{
-//	Setup_TX(Slave_Add);
-//	RPT_Flag = 1;
-//	NUM_BYTES_TX = 1;
-//	TxBuffer[0] = Add;
-//	Transmit();
-//	while (UCB0CTL1 & UCTXSTP);             // Ensure stop condition got sent
-//
-//NUM_BYTES_RX = 1;
-//	TxBuffer[0] = Val;
-//	Transmit();
-//	while (UCB0CTL1 & UCTXSTP);             // Ensure stop condition got sent
-//}
+void WRITE_I2C(unsigned char Slave_Add,unsigned char Add, unsigned char Val)
+{
+	Setup_TX(Slave_Add);
+	RPT_Flag = 0;
+	TxBuffer[0] = Add;
+	TxBuffer[1] = Val;
+	PTxData = TxBuffer; // TX array start address
+	TXByteCtr = 2; // Load TX byte counter
+	while (UCB0CTL1 & UCTXSTP); // Ensure stop condition got sent
+	UCB0CTL1 |= UCTR + UCTXSTT; // I2C TX, start condition
+	__bis_SR_register(CPUOFF + GIE);
+	// Enter LPM0 w/ interrupts
+	while (UCB0CTL1 & UCTXSTP);             // Ensure stop condition got sent
+}
 
 /********************************************************************
  * Function:        unsigned char READ_I2C(unsigned char Slave_Add,unsigned char Add)
@@ -121,7 +123,7 @@ unsigned char READ_I2C(unsigned char Slave_Add,unsigned char Add)
 {
 	Setup_TX(Slave_Add);
 	RPT_Flag = 1;
-	TXData = Add; // TX array start address
+	PTxData = &Add; // TX array start address
 	TXByteCtr = 1; // Load TX byte counter
 	while (UCB0CTL1 & UCTXSTP); // Ensure stop condition got sent
 	UCB0CTL1 |= UCTR + UCTXSTT; // I2C TX, start condition
@@ -199,7 +201,7 @@ void ReadI2CMultipleByte(unsigned char Slave_Add,unsigned char Add,unsigned char
 {
 	Setup_TX(Slave_Add);
 	RPT_Flag = 1;
-	TXData = Add; // TX array start address
+	PTxData = &Add; // TX array start address
 	TXByteCtr = 1; // Load TX byte counter
 	while (UCB0CTL1 & UCTXSTP); // Ensure stop condition got sent
 	UCB0CTL1 |= UCTR + UCTXSTT; // I2C TX, start condition
@@ -251,13 +253,14 @@ __interrupt void USCIAB0TX_ISR(void)
   } else{                                     // Master Transmit
       if (TXByteCtr)                        // Check TX byte counter
   {
-    UCB0TXBUF = TXData;                   // Load TX buffer
+    UCB0TXBUF = *PTxData++;                   // Load TX buffer
     TXByteCtr--;                            // Decrement TX byte counter
   }
   else
   {
     if(RPT_Flag == 1){
     RPT_Flag = 0;
+    PTxData = TxBuffer;                      // TX array start address
     __bic_SR_register_on_exit(CPUOFF);
     }
     else{

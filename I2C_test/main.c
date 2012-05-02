@@ -12,6 +12,8 @@ void main(void)
 
 	InitI2C();
 	d = READ_I2C(0x6F,0x10);
+	WRITE_I2C(0x6F, 0x10, 0xFF);
+	d = READ_I2C(0x6F,0x10);
 	ReadI2CMultipleByte(0x6F,0x10,5,data);
 	__no_operation();
 	while(1);

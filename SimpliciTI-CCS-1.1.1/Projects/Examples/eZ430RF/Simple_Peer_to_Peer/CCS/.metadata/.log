@@ -1,0 +1,25 @@
+!SESSION 2012-04-17 12:26:13.584 -----------------------------------------------
+eclipse.buildId=I20110613-1736
+java.version=1.6.0_13
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product com.ti.ccstudio.branding.product -product com.ti.ccstudio.branding.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product com.ti.ccstudio.branding.product -data C:\Texas Instruments\SimpliciTI-CCS-1.1.1\Projects\Examples\eZ430RF\Simple_Peer_to_Peer\CCS -product com.ti.ccstudio.branding.product
+
+!ENTRY org.eclipse.ui 4 4 2012-04-17 12:26:24.723
+!MESSAGE Referenced part does not exist yet: org.eclipse.jdt.ui.PackageExplorer.
+
+!ENTRY org.eclipse.ui 4 4 2012-04-17 12:26:24.729
+!MESSAGE Referenced part does not exist yet: org.eclipse.cdt.ui.CView.
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-04-17 12:29:05.859
+!MESSAGE Indexed 'Project' (15 sources, 58 headers) in 2.36 sec: 1,496 declarations; 4,558 references; 2 unresolved inclusions; 111 syntax errors; 173 unresolved names (2.78%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-04-17 12:29:08.594
+!MESSAGE Indexed 'Project' (15 sources, 58 headers) in 0.97 sec: 1,496 declarations; 4,558 references; 2 unresolved inclusions; 111 syntax errors; 173 unresolved names (2.78%)
+
+!ENTRY org.eclipse.ui 4 4 2012-04-17 12:30:24.937
+!MESSAGE Referenced part does not exist yet: org.eclipse.jdt.ui.PackageExplorer.
+
+!ENTRY org.eclipse.cdt.core 1 0 2012-04-17 12:31:45.114
+!MESSAGE Indexed 'Project' (15 sources, 58 headers) in 1.09 sec: 1,496 declarations; 4,531 references; 2 unresolved inclusions; 111 syntax errors; 171 unresolved names (2.76%)

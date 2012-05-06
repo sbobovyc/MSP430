@@ -156,5 +156,4 @@
 		<resource resourceType="PROJECT" workspacePath="/UART_test"/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.internal.ui.text.commentOwnerProjectMappings"/>
-	<storageModule moduleId="scannerConfiguration"/>
 </cproject>

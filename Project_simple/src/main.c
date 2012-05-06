@@ -43,12 +43,38 @@ void init_cc(void) {
 		ReadSRAMBlock(&Buffer[0]);				//Read SRAM in Buffer
 }
 
+void init_uart(void) {
+	  WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
+	  BCSCTL1 = CALBC1_1MHZ;                    // Set DCO
+	  DCOCTL = CALDCO_1MHZ;
+	  P3SEL = 0x30;                             // P3.4,5 = USCI_A0 TXD/RXD
+	  UCA0CTL1 |= UCSSEL_2;                     // SMCLK
+	  UCA0BR0 = 104;                            // 1MHz 9600
+	  UCA0BR1 = 0;                              // 1MHz 9600
+	  UCA0MCTL = UCBRS0;                        // Modulation UCBRSx = 1
+	  UCA0CTL1 &= ~UCSWRST;                     // **Initialize USCI state machine**
+}
+
+int send_byte(int _c)
+{
+	while(!(IFG2 & UCA0TXIFG));
+
+	UCA0TXBUF = (unsigned char) _c;
+
+	return((unsigned char)_c);
+}
+
 /*
  * main.c
  */
 void main(void) {
 	init_io();
+	init_uart();
 	init_cc();
+
+	//__bis_SR_register(CPUOFF + GIE);
+
+
 	__bis_SR_register(LPM4_bits + GIE);       // Enter LPM4 w/interrupt
 
 }
@@ -61,5 +87,7 @@ __interrupt void Port_2(void)
   P2IES ^= 0x01;                            // P2.0 toggle which edge causes interrupt
   P2IFG &= ~0x01;                           // P1.2 IFG cleared
   ReadRTCCTimeDate(&Rtcctimedate);
-  __no_operation();
+  send_byte('R');
 }
+
+

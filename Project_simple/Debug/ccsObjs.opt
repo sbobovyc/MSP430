@@ -1,0 +1,1 @@
+"./src/main.obj" "./src/RTCC_Driver.obj" "./src/I2C_Driver.obj" -l"libc.a" "../lnk_msp430f2274.cmd" 

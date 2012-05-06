@@ -64,6 +64,16 @@ int send_byte(int _c)
 	return((unsigned char)_c);
 }
 
+void SendRTCCTimeDate(RTCCTimeDate* ptrToUserVal) {
+	send_byte(ptrToUserVal->Sec);
+	send_byte(ptrToUserVal->Min);
+	send_byte(ptrToUserVal->Hour);
+	send_byte(ptrToUserVal->Day);
+	send_byte(ptrToUserVal->Date);
+	send_byte(ptrToUserVal->Month);
+	send_byte(ptrToUserVal->Year);
+}
+
 /*
  * main.c
  */
@@ -71,10 +81,6 @@ void main(void) {
 	init_io();
 	init_uart();
 	init_cc();
-
-	//__bis_SR_register(CPUOFF + GIE);
-
-
 	__bis_SR_register(LPM4_bits + GIE);       // Enter LPM4 w/interrupt
 
 }
@@ -87,7 +93,7 @@ __interrupt void Port_2(void)
   P2IES ^= 0x01;                            // P2.0 toggle which edge causes interrupt
   P2IFG &= ~0x01;                           // P1.2 IFG cleared
   ReadRTCCTimeDate(&Rtcctimedate);
-  send_byte('R');
+  SendRTCCTimeDate(&Rtcctimedate);
 }
 
 

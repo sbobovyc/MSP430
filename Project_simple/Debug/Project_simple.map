@@ -1,10 +1,10 @@
 ******************************************************************************
                   MSP430 Linker PC v4.0.0                      
 ******************************************************************************
->> Linked Sun May 06 16:42:22 2012
+>> Linked Mon May 07 18:46:31 2012
 
 OUTPUT FILE NAME:   <Project_simple.out>
-ENTRY POINT SYMBOL: "_c_int00"  address: 00008562
+ENTRY POINT SYMBOL: "_c_int00"  address: 00008572
 
 
 MEMORY CONFIGURATION
@@ -14,12 +14,12 @@ MEMORY CONFIGURATION
   SFR                   00000000   00000010  00000000  00000010  RWIX
   PERIPHERALS_8BIT      00000010   000000f0  00000000  000000f0  RWIX
   PERIPHERALS_16BIT     00000100   00000100  00000000  00000100  RWIX
-  RAM                   00000200   00000400  000000ec  00000314  RWIX
+  RAM                   00000200   00000400  000000ee  00000312  RWIX
   INFOD                 00001000   00000040  00000000  00000040  RWIX
   INFOC                 00001040   00000040  00000000  00000040  RWIX
   INFOB                 00001080   00000040  00000000  00000040  RWIX
   INFOA                 000010c0   00000040  00000000  00000040  RWIX
-  FLASH                 00008000   00007fde  00000636  000079a8  RWIX
+  FLASH                 00008000   00007fde  00000652  0000798c  RWIX
   INT00                 0000ffe0   00000002  00000000  00000002  RWIX
   INT01                 0000ffe2   00000002  00000000  00000002  RWIX
   INT02                 0000ffe4   00000002  00000000  00000002  RWIX
@@ -45,50 +45,53 @@ section   page    origin      length       input sections
 --------  ----  ----------  ----------   ----------------
 .pinit     0    00008000    00000000     UNINITIALIZED
 
-.bss       0    00000200    0000009c     UNINITIALIZED
+.bss       0    00000200    0000009e     UNINITIALIZED
                   00000200    0000008d     I2C_Driver.obj (.bss)
-                  0000028d    00000007     main.obj (.bss)
-                  00000294    00000004     rts430.lib : _lock.obj (.bss)
-                  00000298    00000004                : boot.obj (.bss)
+                  0000028d    00000008     main.obj (.bss)
+                  00000295    00000001     --HOLE--
+                  00000296    00000004     rts430.lib : _lock.obj (.bss)
+                  0000029a    00000004                : boot.obj (.bss)
 
 .stack     0    000005b0    00000050     UNINITIALIZED
                   000005b0    00000002     rts430.lib : boot.obj (.stack)
                   000005b2    0000004e     --HOLE--
 
-.text      0    00008000    00000628     
+.text      0    00008000    0000063e     
                   00008000    000000a4     I2C_Driver.obj (.text:USCIAB0TX_ISR)
                   000080a4    0000009a     RTCC_Driver.obj (.text:WriteRTCCTimeDate)
-                  0000813e    00000088     main.obj (.text:init_cc)
-                  000081c6    00000080     RTCC_Driver.obj (.text:ReadRTCCTimeDate)
-                  00008246    0000006e     I2C_Driver.obj (.text:ReadI2CMultipleByte)
-                  000082b4    0000006c     I2C_Driver.obj (.text:READ_I2C)
-                  00008320    0000004a     I2C_Driver.obj (.text:WriteI2CMultipleByte)
-                  0000836a    00000046     rts430.lib : autoinit.obj (.text:_auto_init)
-                  000083b0    0000003c     I2C_Driver.obj (.text:Setup_TX)
-                  000083ec    0000003c     I2C_Driver.obj (.text:WRITE_I2C)
-                  00008428    0000003a     main.obj (.text:SendRTCCTimeDate)
-                  00008462    00000036     I2C_Driver.obj (.text:Setup_RX)
-                  00008498    00000034     RTCC_Driver.obj (.text:InitRTCC)
-                  000084cc    00000032     I2C_Driver.obj (.text:InitI2C)
-                  000084fe    00000032     main.obj (.text:Port_2)
-                  00008530    00000032     main.obj (.text:init_uart)
-                  00008562    00000026     rts430.lib : boot.obj (.text:_c_int00_noexit)
-                  00008588    00000018     main.obj (.text:init_io)
-                  000085a0    00000014     RTCC_Driver.obj (.text:ReadSRAMBlock)
-                  000085b4    00000014     RTCC_Driver.obj (.text:WriteSRAMBlock)
-                  000085c8    00000014     rts430.lib : memset.obj (.text:memset)
-                  000085dc    00000012     main.obj (.text:main)
-                  000085ee    00000012     rts430.lib : memcpy.obj (.text:memcpy)
-                  00008600    00000010                : epilog.obj (.text)
-                  00008610    0000000e     main.obj (.text:send_byte)
-                  0000861e    00000004     rts430.lib : pre_init.obj (.text:_system_pre_init)
-                  00008622    00000004                : exit.obj (.text:abort)
-                  00008626    00000002                : _lock.obj (.text:_nop)
+                  0000813e    00000086     main.obj (.text:init_cc)
+                  000081c4    00000080     RTCC_Driver.obj (.text:ReadRTCCTimeDate)
+                  00008244    0000006e     I2C_Driver.obj (.text:ReadI2CMultipleByte)
+                  000082b2    0000006c     I2C_Driver.obj (.text:READ_I2C)
+                  0000831e    0000004c     main.obj (.text:Port_2)
+                  0000836a    0000004a     I2C_Driver.obj (.text:WriteI2CMultipleByte)
+                  000083b4    00000046     rts430.lib : autoinit.obj (.text:_auto_init)
+                  000083fa    0000003c     I2C_Driver.obj (.text:Setup_TX)
+                  00008436    0000003c     I2C_Driver.obj (.text:WRITE_I2C)
+                  00008472    0000003a     main.obj (.text:SendRTCCTimeDate)
+                  000084ac    00000036     I2C_Driver.obj (.text:Setup_RX)
+                  000084e2    00000034     RTCC_Driver.obj (.text:InitRTCC)
+                  00008516    00000032     main.obj (.text:init_uart)
+                  00008548    0000002a     I2C_Driver.obj (.text:InitI2C)
+                  00008572    00000026     rts430.lib : boot.obj (.text:_c_int00_noexit)
+                  00008598    0000001e     main.obj (.text:init_io)
+                  000085b6    00000014     RTCC_Driver.obj (.text:ReadSRAMBlock)
+                  000085ca    00000014     RTCC_Driver.obj (.text:WriteSRAMBlock)
+                  000085de    00000014     rts430.lib : memset.obj (.text:memset)
+                  000085f2    00000012     main.obj (.text:main)
+                  00008604    00000012     rts430.lib : memcpy.obj (.text:memcpy)
+                  00008616    00000010                : epilog.obj (.text)
+                  00008626    0000000e     main.obj (.text:send_byte)
+                  00008634    00000004     rts430.lib : pre_init.obj (.text:_system_pre_init)
+                  00008638    00000004                : exit.obj (.text:abort)
+                  0000863c    00000002                : _lock.obj (.text:_nop)
 
-.cinit     0    00008628    0000000e     
-                  00008628    0000000b     I2C_Driver.obj (.cinit)
-                  00008633    00000001     --HOLE-- [fill = 0]
-                  00008634    00000002     (.pad.cinit) [fill = 0]
+.cinit     0    0000863e    00000014     
+                  0000863e    0000000b     I2C_Driver.obj (.cinit)
+                  00008649    00000001     --HOLE-- [fill = 0]
+                  0000864a    00000005     main.obj (.cinit)
+                  0000864f    00000001     --HOLE-- [fill = 0]
+                  00008650    00000002     (.pad.cinit) [fill = 0]
 
 .int03     0    0000ffe6    00000002     
                   0000ffe6    00000002     main.obj (.int03)
@@ -117,7 +120,7 @@ address    name
 00000057   BCSCTL1
 00000058   BCSCTL2
 00000053   BCSCTL3
-00008622   C$$EXIT
+00008638   C$$EXIT
 000010fb   CALBC1_12MHZ
 000010f9   CALBC1_16MHZ
 000010ff   CALBC1_1MHZ
@@ -134,8 +137,9 @@ address    name
 00000001   IE2
 00000002   IFG1
 00000003   IFG2
-000084cc   InitI2C
-00008498   InitRTCC
+00008548   InitI2C
+000084e2   InitRTCC
+00000294   LED
 000000c0   OA0CTL0
 000000c1   OA0CTL1
 000000c2   OA1CTL0
@@ -168,19 +172,19 @@ address    name
 0000001f   P4SEL
 00000206   PRxData
 00000208   PTxData
-000084fe   Port_2
-000082b4   READ_I2C
+0000831e   Port_2
+000082b2   READ_I2C
 00000202   RPT_Flag
 0000028c   RX
 00000200   RXByteCtr
-00008246   ReadI2CMultipleByte
-000081c6   ReadRTCCTimeDate
-000085a0   ReadSRAMBlock
+00008244   ReadI2CMultipleByte
+000081c4   ReadRTCCTimeDate
+000085b6   ReadSRAMBlock
 0000028d   Rtcctimedate
 0000028a   RxBuffer
-00008428   SendRTCCTimeDate
-00008462   Setup_RX
-000083b0   Setup_TX
+00008472   SendRTCCTimeDate
+000084ac   Setup_RX
+000083fa   Setup_TX
 00000172   TACCR0
 00000174   TACCR1
 00000176   TACCR2
@@ -225,10 +229,10 @@ address    name
 0000006f   UCB0TXBUF
 00008000   USCIAB0TX_ISR
 00000120   WDTCTL
-000083ec   WRITE_I2C
-00008320   WriteI2CMultipleByte
+00008436   WRITE_I2C
+0000836a   WriteI2CMultipleByte
 000080a4   WriteRTCCTimeDate
-000085b4   WriteSRAMBlock
+000085ca   WriteSRAMBlock
 00000600   __STACK_END
 00000050   __STACK_SIZE
 00000001   __TI_args_main
@@ -237,42 +241,42 @@ address    name
 ffffffff   __binit__
 00000200   __bss__
 ffffffff   __c_args__
-00008628   __cinit__
-0000029c   __end__
-00008628   __etext__
+0000863e   __cinit__
+0000029e   __end__
+0000863e   __etext__
 ffffffff   __pinit__
 00008000   __text__
-0000836a   _auto_init
-00008562   _c_int00
-00008562   _c_int00_noexit
-00000298   _cleanup_ptr
-0000029a   _dtors_ptr
-00000294   _lock
-00008626   _nop
+000083b4   _auto_init
+00008572   _c_int00
+00008572   _c_int00_noexit
+0000029a   _cleanup_ptr
+0000029c   _dtors_ptr
+00000296   _lock
+0000863c   _nop
 0000fffe   _reset_vector
 000005b0   _stack
-0000861e   _system_pre_init
-00000296   _unlock
-00008622   abort
+00008634   _system_pre_init
+00000298   _unlock
+00008638   abort
 ffffffff   binit
-00008628   cinit
-0000029c   end
-00008628   etext
-0000860c   func_epilog_1
-0000860a   func_epilog_2
-00008608   func_epilog_3
-00008606   func_epilog_4
-00008604   func_epilog_5
-00008602   func_epilog_6
-00008600   func_epilog_7
+0000863e   cinit
+0000029e   end
+0000863e   etext
+00008622   func_epilog_1
+00008620   func_epilog_2
+0000861e   func_epilog_3
+0000861c   func_epilog_4
+0000861a   func_epilog_5
+00008618   func_epilog_6
+00008616   func_epilog_7
 0000813e   init_cc
-00008588   init_io
-00008530   init_uart
-000085dc   main
-000085ee   memcpy
-000085c8   memset
+00008598   init_io
+00008516   init_uart
+000085f2   main
+00008604   memcpy
+000085de   memset
 ffffffff   pinit
-00008610   send_byte
+00008626   send_byte
 
 
 GLOBAL SYMBOLS: SORTED BY Symbol Address 
@@ -384,12 +388,13 @@ address    name
 0000028b   TXByteCtr
 0000028c   RX
 0000028d   Rtcctimedate
-00000294   _lock
-00000296   _unlock
-00000298   _cleanup_ptr
-0000029a   _dtors_ptr
-0000029c   __end__
-0000029c   end
+00000294   LED
+00000296   _lock
+00000298   _unlock
+0000029a   _cleanup_ptr
+0000029c   _dtors_ptr
+0000029e   __end__
+0000029e   end
 000005b0   _stack
 00000600   __STACK_END
 000010f8   CALDCO_16MHZ
@@ -405,43 +410,43 @@ address    name
 00008000   __text__
 000080a4   WriteRTCCTimeDate
 0000813e   init_cc
-000081c6   ReadRTCCTimeDate
-00008246   ReadI2CMultipleByte
-000082b4   READ_I2C
-00008320   WriteI2CMultipleByte
-0000836a   _auto_init
-000083b0   Setup_TX
-000083ec   WRITE_I2C
-00008428   SendRTCCTimeDate
-00008462   Setup_RX
-00008498   InitRTCC
-000084cc   InitI2C
-000084fe   Port_2
-00008530   init_uart
-00008562   _c_int00
-00008562   _c_int00_noexit
-00008588   init_io
-000085a0   ReadSRAMBlock
-000085b4   WriteSRAMBlock
-000085c8   memset
-000085dc   main
-000085ee   memcpy
-00008600   func_epilog_7
-00008602   func_epilog_6
-00008604   func_epilog_5
-00008606   func_epilog_4
-00008608   func_epilog_3
-0000860a   func_epilog_2
-0000860c   func_epilog_1
-00008610   send_byte
-0000861e   _system_pre_init
-00008622   C$$EXIT
-00008622   abort
-00008626   _nop
-00008628   __cinit__
-00008628   __etext__
-00008628   cinit
-00008628   etext
+000081c4   ReadRTCCTimeDate
+00008244   ReadI2CMultipleByte
+000082b2   READ_I2C
+0000831e   Port_2
+0000836a   WriteI2CMultipleByte
+000083b4   _auto_init
+000083fa   Setup_TX
+00008436   WRITE_I2C
+00008472   SendRTCCTimeDate
+000084ac   Setup_RX
+000084e2   InitRTCC
+00008516   init_uart
+00008548   InitI2C
+00008572   _c_int00
+00008572   _c_int00_noexit
+00008598   init_io
+000085b6   ReadSRAMBlock
+000085ca   WriteSRAMBlock
+000085de   memset
+000085f2   main
+00008604   memcpy
+00008616   func_epilog_7
+00008618   func_epilog_6
+0000861a   func_epilog_5
+0000861c   func_epilog_4
+0000861e   func_epilog_3
+00008620   func_epilog_2
+00008622   func_epilog_1
+00008626   send_byte
+00008634   _system_pre_init
+00008638   C$$EXIT
+00008638   abort
+0000863c   _nop
+0000863e   __cinit__
+0000863e   __etext__
+0000863e   cinit
+0000863e   etext
 0000fffe   _reset_vector
 ffffffff   __binit__
 ffffffff   __c_args__
@@ -449,4 +454,4 @@ ffffffff   __pinit__
 ffffffff   binit
 ffffffff   pinit
 
-[169 symbols]
+[170 symbols]

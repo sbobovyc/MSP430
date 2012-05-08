@@ -26,6 +26,7 @@
 								<listOptionValue builtIn="false" value="IS_ASSEMBLY_ONLY=false"/>
 								<listOptionValue builtIn="false" value="CCS_MBS_VERSION=5.1.0.01"/>
 								<listOptionValue builtIn="false" value="PROJECT_KIND=com.ti.ccstudio.managedbuild.core.ProjectKind_Executable"/>
+								<listOptionValue builtIn="false" value="LINK_ORDER="/>
 							</option>
 							<targetPlatform id="com.ti.ccstudio.buildDefinitions.MSP430_3.2.exe.targetPlatformDebug.1140671039" name="Platform" superClass="com.ti.ccstudio.buildDefinitions.MSP430_3.2.exe.targetPlatformDebug"/>
 							<builder buildPath="${workspace_loc:/Project/CC2500-LinkTo}" id="com.ti.ccstudio.buildDefinitions.MSP430_3.2.exe.builderDebug.243284385" keepEnvironmentInBuildfile="false" name="GNU Make" superClass="com.ti.ccstudio.buildDefinitions.MSP430_3.2.exe.builderDebug"/>
@@ -40,6 +41,7 @@
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compilerID.INCLUDE_PATH.1137576555" name="Add dir to #include search path (--include_path, -I)" superClass="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compilerID.INCLUDE_PATH" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${CCS_BASE_ROOT}/msp430/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/h}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${CCE_INSTALL_ROOT}/msp430/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${CG_TOOL_ROOT}/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${MSP430_CG_ROOT}/include&quot;"/>
@@ -55,6 +57,7 @@
 									<listOptionValue builtIn="false" value="225"/>
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compilerID.DEBUGGING_MODEL.569860493" name="Debugging model" superClass="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compilerID.DEBUGGING_MODEL" value="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compilerID.DEBUGGING_MODEL.SYMDEBUG__DWARF" valueType="enumerated"/>
+								<option id="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compilerID.OPT_FOR_SPEED.1321311823" name="Control speed vs. size tradeoffs (0=size, 5=speed) (--opt_for_speed, -mf)" superClass="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compilerID.OPT_FOR_SPEED" value="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compilerID.OPT_FOR_SPEED._none" valueType="enumerated"/>
 								<inputType id="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compiler.inputType__C_SRCS.763985592" name="C Sources" superClass="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compiler.inputType__C_SRCS"/>
 								<inputType id="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compiler.inputType__CPP_SRCS.1785942550" name="C++ Sources" superClass="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compiler.inputType__CPP_SRCS"/>
 								<inputType id="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compiler.inputType__ASM_SRCS.722648030" name="Assembly Sources" superClass="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compiler.inputType__ASM_SRCS"/>
@@ -237,6 +240,7 @@
 								<listOptionValue builtIn="false" value="IS_ASSEMBLY_ONLY=false"/>
 								<listOptionValue builtIn="false" value="CCS_MBS_VERSION=5.1.0.01"/>
 								<listOptionValue builtIn="false" value="PROJECT_KIND=com.ti.ccstudio.managedbuild.core.ProjectKind_Executable"/>
+								<listOptionValue builtIn="false" value="LINK_ORDER="/>
 							</option>
 							<targetPlatform id="com.ti.ccstudio.buildDefinitions.MSP430_3.2.exe.targetPlatformDebug.2063834065" name="Platform" superClass="com.ti.ccstudio.buildDefinitions.MSP430_3.2.exe.targetPlatformDebug"/>
 							<builder buildPath="${workspace_loc:/Project/CC2500-LinkListen}" id="com.ti.ccstudio.buildDefinitions.MSP430_3.2.exe.builderDebug.1850865025" keepEnvironmentInBuildfile="false" name="GNU Make" superClass="com.ti.ccstudio.buildDefinitions.MSP430_3.2.exe.builderDebug"/>
@@ -251,6 +255,7 @@
 								</option>
 								<option id="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compilerID.INCLUDE_PATH.1251269258" name="Add dir to #include search path (--include_path, -I)" superClass="com.ti.ccstudio.buildDefinitions.MSP430_3.2.compilerID.INCLUDE_PATH" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;${CCS_BASE_ROOT}/msp430/include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/h}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${CCE_INSTALL_ROOT}/msp430/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${CG_TOOL_ROOT}/include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${MSP430_CG_ROOT}/include&quot;"/>

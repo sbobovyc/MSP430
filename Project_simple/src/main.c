@@ -1,11 +1,19 @@
 #include "msp430x22x4.h"
 #include "RTCC_Driver.h"
 
+#define LOW_POWER
+
 RTCCTimeDate		Rtcctimedate;			//Declare a structure
+unsigned char LED = 0x01;
 
 void init_io(void) {
 	WDTCTL = WDTPW + WDTHOLD; // Stop watchdog timer
-	P1DIR |= 0x01; // Set P1.0 to output direction
+	P1DIR |= 0x03; // Set P1.0 to output direction
+	#ifdef LOW_POWER
+		P1OUT = 0x00;
+	#else
+		P1OUT = 0x01;
+	#endif
 	P2IE |= 0x01; // P2.0 interrupt enabled
 	P2IES |= 0x01; // P2.0 Hi/lo edge
 	P2IFG &= ~0x01; // P2.0 IFG cleared
@@ -15,11 +23,11 @@ void init_cc(void) {
 	unsigned char Cnt;
 	unsigned char Buffer[64];
 	InitRTCC();								//Initialize MCP79410,Produce 1Hz square wave on MFP
-		Rtcctimedate.Day = 6;					//Write Monday as a day to RTCC
-		Rtcctimedate.Date = 0x31;				//Write Date as 1 to RTCC
-		Rtcctimedate.Month = 0x12;				//Write 0x11 as month to RTCC
-		Rtcctimedate.Year = 0x11;				//Write 0x11 as year to RTCC
-		Rtcctimedate.Hour =0x23;				//Write 0x23 as hour to RTCC
+		Rtcctimedate.Day = 2;					//Write Monday as a day to RTCC
+		Rtcctimedate.Date = 0x07;				//Write Date as 1 to RTCC
+		Rtcctimedate.Month = 0x05;				//Write 0x11 as month to RTCC
+		Rtcctimedate.Year = 0x12;				//Write 0x11 as year to RTCC
+		Rtcctimedate.Hour =0x10;				//Write 0x23 as hour to RTCC
 		Rtcctimedate.Min = 0x59;				//Write 0x59 as minute to RTCC
 		Rtcctimedate.Sec = 0x59;				//Write 0x59 as second to RTCC
 
@@ -89,7 +97,19 @@ void main(void) {
 #pragma vector=PORT2_VECTOR
 __interrupt void Port_2(void)
 {
-  P1OUT ^= 0x01;                            // P1.0 = toggle
+#ifdef  LOW_POWER
+  LED ^= 0x03;
+  P1OUT ^= LED;                            // P1.0 = toggle
+  unsigned char i;
+    for(i=0; i <255; i++) {
+  	  __no_operation();
+    }
+    P1OUT = 0x00;                            // P1.0 = toggle
+#else
+    P1OUT ^= 0x03;
+#endif
+
+
   P2IES ^= 0x01;                            // P2.0 toggle which edge causes interrupt
   P2IFG &= ~0x01;                           // P1.2 IFG cleared
   ReadRTCCTimeDate(&Rtcctimedate);

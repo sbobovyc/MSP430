@@ -22,6 +22,9 @@ Applications/application/LinkTo/main_LinkTo.obj: C:/Users/sbobovyc/workspace_v5_
 Applications/application/LinkTo/main_LinkTo.obj: C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/eZ430RF/Simple_Peer_to_Peer/CCS/Project/../../../../../../Components/bsp/drivers/bsp_buttons.h
 Applications/application/LinkTo/main_LinkTo.obj: C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/eZ430RF/Simple_Peer_to_Peer/CCS/Project/../../../../../../Components/bsp/boards/eZ430RF/bsp_button_defs.h
 Applications/application/LinkTo/main_LinkTo.obj: C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/eZ430RF/Simple_Peer_to_Peer/CCS/Project/../../../../../../Components/bsp/drivers/code/bsp_generic_buttons.h
+Applications/application/LinkTo/main_LinkTo.obj: C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/eZ430RF/Simple_Peer_to_Peer/CCS/Project/h/RTCC_Driver.h
+Applications/application/LinkTo/main_LinkTo.obj: C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/eZ430RF/Simple_Peer_to_Peer/CCS/Project/h/I2C_Driver.h
+Applications/application/LinkTo/main_LinkTo.obj: C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/eZ430RF/Simple_Peer_to_Peer/CCS/Project/h/custom_types.h
 Applications/application/LinkTo/main_LinkTo.obj: C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/Applications/app_remap_led.h
 
 C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/Applications/main_LinkTo.c: 
@@ -46,4 +49,7 @@ C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/e
 C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/eZ430RF/Simple_Peer_to_Peer/CCS/Project/../../../../../../Components/bsp/drivers/bsp_buttons.h: 
 C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/eZ430RF/Simple_Peer_to_Peer/CCS/Project/../../../../../../Components/bsp/boards/eZ430RF/bsp_button_defs.h: 
 C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/eZ430RF/Simple_Peer_to_Peer/CCS/Project/../../../../../../Components/bsp/drivers/code/bsp_generic_buttons.h: 
+C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/eZ430RF/Simple_Peer_to_Peer/CCS/Project/h/RTCC_Driver.h: 
+C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/eZ430RF/Simple_Peer_to_Peer/CCS/Project/h/I2C_Driver.h: 
+C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/eZ430RF/Simple_Peer_to_Peer/CCS/Project/h/custom_types.h: 
 C:/Users/sbobovyc/workspace_v5_1/MSP430/SimpliciTI-CCS-1.1.1/Projects/Examples/Applications/app_remap_led.h: 

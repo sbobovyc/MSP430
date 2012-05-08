@@ -69,8 +69,8 @@ void Setup_RX(unsigned char Add);
 void InitI2C(void)
 {
 	  WDTCTL = WDTPW + WDTHOLD;                 // Stop WDT
-	  P1DIR |= (1 << 1);
-	  P1OUT |= (1 << 1);
+//	  P1DIR |= (1 << 1);
+//	  P1OUT |= (1 << 1);
 	  P2DIR |= (1 << 1);
 	  P2SEL |= (1 << 1);                        // SMCLK Output
 	  P3DIR = 0x0F;								// disable CC2500 //TODO remember to reenable the radio

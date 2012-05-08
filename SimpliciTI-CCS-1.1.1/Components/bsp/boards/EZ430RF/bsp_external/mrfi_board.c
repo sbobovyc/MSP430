@@ -60,14 +60,15 @@
  * @return      -
  **************************************************************************************************
  */
-BSP_ISR_FUNCTION( BSP_GpioPort1Isr, PORT2_VECTOR )
-{
-  /*
-   *  This ISR is easily replaced.  The new ISR must simply
-   *  include the following function call.
-   */
-  MRFI_GpioIsr();
-}
+//BSP_ISR_FUNCTION( BSP_GpioPort1Isr, PORT2_VECTOR )
+//{
+//	ReadRTCCTimeDate(&Rtcctimedate);
+//  /*
+//   *  This ISR is easily replaced.  The new ISR must simply
+//   *  include the following function call.
+//   */
+//  MRFI_GpioIsr();
+//}
 
 
 /**************************************************************************************************

@@ -40,7 +40,7 @@
 #include "nwk_api.h"
 #include "bsp_leds.h"
 #include "bsp_buttons.h"
-
+#include "RTCC_Driver.h"
 #include "app_remap_led.h"
 
 static void linkTo(void);
@@ -53,10 +53,45 @@ static linkID_t sLinkID1 = 0;
 /* application Rx frame handler. */
 static uint8_t sRxCallback(linkID_t);
 
+RTCCTimeDate		Rtcctimedate;			//Declare a structure
+
 #define SPIN_ABOUT_A_SECOND  NWK_DELAY(1000)
+
+void init_cc(void) {
+	unsigned char Cnt;
+	unsigned char Buffer[64];
+	InitRTCC();								//Initialize MCP79410,Produce 1Hz square wave on MFP
+		Rtcctimedate.Day = 6;					//Write Monday as a day to RTCC
+		Rtcctimedate.Date = 0x31;				//Write Date as 1 to RTCC
+		Rtcctimedate.Month = 0x12;				//Write 0x11 as month to RTCC
+		Rtcctimedate.Year = 0x11;				//Write 0x11 as year to RTCC
+		Rtcctimedate.Hour =0x23;				//Write 0x23 as hour to RTCC
+		Rtcctimedate.Min = 0x59;				//Write 0x59 as minute to RTCC
+		Rtcctimedate.Sec = 0x59;				//Write 0x59 as second to RTCC
+
+		WriteRTCCTimeDate(&Rtcctimedate);		//Update RTCC with new time stamp stored in Rtcctimedate
+
+		for(Cnt = 0; Cnt < 64; Cnt++)
+		{
+			Buffer[Cnt] = Cnt;
+		}
+		WriteSRAMBlock(&Buffer[0]);				//Write SRAM with values stored in Buffer variable
+		__no_operation();
+		__no_operation();
+		__no_operation();
+		for(Cnt = 0; Cnt < 64; Cnt++)
+		{
+			Buffer[Cnt] = 0;					//Clear Buffer
+		}
+		__no_operation();
+		__no_operation();
+		__no_operation();
+		ReadSRAMBlock(&Buffer[0]);				//Read SRAM in Buffer
+}
 
 void main (void)
 {
+	init_cc();
   BSP_Init();
 
   /* If an on-the-fly device address is generated it must be done before the
@@ -130,6 +165,7 @@ static void linkTo()
   msg[0] = 2;  /* toggle red */
   while (1)
   {
+	__bis_SR_register(LPM4_bits + GIE);       // Enter LPM4 w/interrupt
     SPIN_ABOUT_A_SECOND;
     if (delay > 0x00)
     {
@@ -148,6 +184,15 @@ static void linkTo()
     delay = (delay+1) & 0x03;
     /* put the sequence ID in the message */
     msg[9] = ++sTxTid;
+    ReadRTCCTimeDate(&Rtcctimedate);
+    /* put data into packet */
+    msg[1] = Rtcctimedate.Sec;
+    msg[2] = Rtcctimedate.Min;
+    msg[3] = Rtcctimedate.Hour;
+    msg[4] = Rtcctimedate.Day;
+    msg[5] = Rtcctimedate.Date;
+    msg[6] = Rtcctimedate.Month;
+    msg[7] = Rtcctimedate.Year;
     SMPL_Send(sLinkID1, msg, sizeof(msg));
   }
 }
@@ -208,4 +253,6 @@ static uint8_t sRxCallback(linkID_t port)
   /* keep frame for later handling. */
   return 0;
 }
+
+
 
